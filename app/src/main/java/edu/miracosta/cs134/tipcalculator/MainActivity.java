@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView totalTextView;
     private SeekBar percentSeekBar;
 
-    // Member varible for model.
+    // Member variable for model.
 	private Bill currentBill;
 
     @Override
@@ -33,11 +33,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Initialise member variables.
-	    amountEditText = FindViewById(R.id.amountEditText);
-	    percentTextView = FindViewById(R.id.percentTextView);
-	    tipTextView = FindViewById(R.id.tipTextView);
-	    totalTextView = FindViewById(R.id.totalTextView);
-	    percentSeekBar = FindViewById(R.id.percentSeekBar);
+	    amountEditText = findViewById(R.id.amountEditText);
+	    percentTextView = findViewById(R.id.percentTextView);
+	    tipTextView = findViewById(R.id.tipTextView);
+	    totalTextView = findViewById(R.id.totalTextView);
+	    percentSeekBar = findViewById(R.id.percentSeekBar);
 
 	    // Initialize our Model.
 	    currentBill = new Bill();
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 			    // Update percentTextView label.
 			    percentTextView.setText(percent.format(progress / 100.0));
 			    tipTextView.setText(currency.format(currentBill.getTipAmount()));
-			    totalTextView.setText(currentcy.format(currentBill.getTotalAmount()));
+			    totalTextView.setText(currency.format(currentBill.getTotalAmount()));
 //			    currentBill.setTipPercent(percentSeekBar.getProgress()/100.0);
 			    // Update tipTextView.
 
@@ -77,14 +77,13 @@ public class MainActivity extends AppCompatActivity {
 		    @Override
 		    public void onTextChanged(CharSequence s, int start, int before, int count) {
 		    	// Updated our Model.
-			    currentBill.setAmount(Couble.parseDouble(amountEditText.getText().toString));
+			    currentBill.setAmount(Double.parseDouble(amountEditText.getText().toString()));
 			    tipTextView.setText(currency.format(currentBill.getTipAmount()));
-			    totalTextView.setText(currentcy.format(currentBill.getTotalAmount()));
+			    totalTextView.setText(currency.format(currentBill.getTotalAmount()));
 		    }
 
 		    @Override
 		    public void afterTextChanged(Editable s) { }
 	    });
     }
-
 }
